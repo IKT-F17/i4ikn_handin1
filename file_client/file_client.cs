@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Net;
 using System.Net.Sockets;
 
 namespace tcp
@@ -24,7 +23,21 @@ namespace tcp
 		/// </param>
 		private file_client (string[] args)
 		{
-			// TO DO Your own code
+		    Console.WriteLine("Trying to connect...");
+
+            // Opretter forbindelse til Client:
+            var client = new TcpClient();
+		    client.Connect(args[0], PORT);
+
+            // Aktivere stream på den åbne forbindelsen:
+		    var stream = client.GetStream();
+
+            // Kontakter serveren og angiver hvilken fil:
+		    LIB.writeTextTCP(stream, args[1]);
+		    ReceiveFile(args[1], stream);
+
+            stream.Close();
+            client.Close();
 		}
 
 		/// <summary>
@@ -36,9 +49,35 @@ namespace tcp
 		/// <param name='io'>
 		/// Network stream for reading from the server
 		/// </param>
-		private void receiveFile (String fileName, NetworkStream io)
+		private void ReceiveFile (string fileName, NetworkStream io)
 		{
-			// TO DO Your own code
+		    var fileSize = (int) LIB.getFileSizeTCP(io);
+
+            if (fileSize != 0)
+            {
+                var totalAmountReceived = 0;
+
+                var bytes = new byte[BUFSIZE];
+                var fs = new FileStream(fileName, FileMode.Create, FileAccess.Write);
+
+                while (totalAmountReceived < fileSize)
+                {
+                                                    // Kunne man ikke også bare have brugt BUFSIZE her?
+                    var bytesRead = io.Read(bytes, 0, bytes.Length);
+
+                    fs.Write(bytes, 0, bytesRead);
+                    totalAmountReceived += bytesRead;
+
+                    Array.Clear(bytes, 0, BUFSIZE);
+                }
+
+                fs.Close();
+                //io.Close();   // Det behøver man vel ikke?
+            }
+            else
+            {
+                Console.WriteLine("No file found!");
+            }
 		}
 
 		/// <summary>
