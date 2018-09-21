@@ -36,12 +36,12 @@ namespace tcp
 
 		        while (true)
 		        {
-                    //server.Start();
-		            //Console.WriteLine("Server started!");
+                    server.Start();
+                    Console.WriteLine("Server: Started!");
 
-                    Console.WriteLine("Server - Waiting for new connection...");
+                    Console.WriteLine("Server: Waiting for new connection...");
 		            var client = server.AcceptTcpClient();
-		            Console.WriteLine("Server - Client connected!");
+		            Console.WriteLine("Server: Client connected!");
 
                     // Modtager besked fra Client:
 		            var stream = client.GetStream();
@@ -112,7 +112,7 @@ namespace tcp
 		/// </param>
 		public static void Main (string[] args)
 		{
-			Console.WriteLine ("Server starts...");
+			Console.WriteLine ("Server: Starts...");
 			new file_server();
 		}
 	}
