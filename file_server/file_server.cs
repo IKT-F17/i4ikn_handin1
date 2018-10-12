@@ -10,9 +10,9 @@ namespace tcp
 		const int PORT = 9000;
 		const int BUFSIZE = 1000;
 
-		private file_server (string[] args)
+		private file_server ()
 		{
-		    var localAddress = IPAddress.Parse(args[0]);
+		    var localAddress = IPAddress.Parse("10.0.0.1");
 
 		    try
 		    {
@@ -76,11 +76,11 @@ namespace tcp
             fs.Close();
 		}
 
-
-	    public static void Main (string[] args)
+        
+	    public static void Main ()
 		{
 			Console.WriteLine ("Server: Starts...");
-			new file_server(args);
+			new file_server();
 		}
 	}
 }
