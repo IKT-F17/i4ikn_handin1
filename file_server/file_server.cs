@@ -10,9 +10,9 @@ namespace tcp
 		const int PORT = 9000;
 		const int BUFSIZE = 1000;
 
-		private file_server ()
+		private file_server (string[] args)
 		{
-		    var localAddress = IPAddress.Parse("127.0.0.1");
+		    var localAddress = IPAddress.Parse(args[0]);
 
 		    try
 		    {
@@ -80,7 +80,7 @@ namespace tcp
 	    public static void Main (string[] args)
 		{
 			Console.WriteLine ("Server: Starts...");
-			new file_server();
+			new file_server(args);
 		}
 	}
 }
