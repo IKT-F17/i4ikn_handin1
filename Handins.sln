@@ -15,9 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{8CF337
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{2B694202-77FC-4BFC-89DA-341A2BBA193D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientConsoleApp", "ConsoleApp1\ClientConsoleApp.csproj", "{12488A9D-66CE-4AE1-A699-F2322B6A955A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientConsoleApp", "ConsoleApp1\ClientConsoleApp.csproj", "{12488A9D-66CE-4AE1-A699-F2322B6A955A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerConsoleApp", "ServerConsoleApp\ServerConsoleApp.csproj", "{05446B4F-6062-499E-9332-5CCB417FAC5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerConsoleApp", "ServerConsoleApp\ServerConsoleApp.csproj", "{05446B4F-6062-499E-9332-5CCB417FAC5D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Handin1", "Handin1", "{1B95DCAA-C447-490E-9F2A-7BDED18ED302}"
 EndProject
