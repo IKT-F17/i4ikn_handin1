@@ -12,7 +12,7 @@ namespace tcp
 
 		private file_server ()
 		{
-		    var localAddress = IPAddress.Parse("127.0.0.1");
+		    var localAddress = IPAddress.Parse("10.0.0.1");
 
 		    try
 		    {
@@ -76,8 +76,8 @@ namespace tcp
             fs.Close();
 		}
 
-
-	    public static void Main (string[] args)
+        
+	    public static void Main ()
 		{
 			Console.WriteLine ("Server: Starts...");
 			new file_server();
