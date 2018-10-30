@@ -6,7 +6,6 @@ using System.Text;
 
 public class UDPClient
 {
-
     public static void Main()
     {
         bool isSending = true;
@@ -26,7 +25,6 @@ public class UDPClient
                 listener.Send(dataRequest, dataRequest.Length, UDPServerEndPoint);
                 //isSending = false;
                 isSending = !isSending;
-
 
                 while (!isSending)
                 {
@@ -50,6 +48,4 @@ public class UDPClient
         listener.Close();
         return;
     }
-
-
 }
