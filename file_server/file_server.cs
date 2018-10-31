@@ -12,9 +12,39 @@ namespace tcp
 
 		private file_server ()
 		{
-		    var localAddress = IPAddress.Parse("10.0.0.1");
+		    var localAddress = IPAddress.Parse("0.0.0.0");
 
-		    try
+            Console.WriteLine("CHOOSE IP ADDRESS FOR THE SERVER...");
+		    Console.WriteLine("1. Default Local Host IP (127.0.0.1)");
+		    Console.WriteLine("2. Default Remote Host IP (10.0.0.1)");
+		    Console.WriteLine("3. Enter Custom IP Address.\n");
+		    Console.Write("Your choice: ");
+		    var choice = int.Parse(Console.ReadLine());
+
+            switch (choice)
+            {
+                case 1:
+                    localAddress = IPAddress.Parse("127.0.0.1");
+                    Console.WriteLine("Server IP address is now: 127.0.0.1\n");
+                    break;
+
+                case 2:
+                    localAddress = IPAddress.Parse("10.0.0.1");
+                    Console.WriteLine("Server IP address is now: 10.0.0.1\n");
+                    break;
+
+                case 3:
+                    Console.Write("Type custom IP address here: ");
+                    while (!IPAddress.TryParse(Console.ReadLine(), out localAddress))
+                    {
+                        Console.WriteLine("Invalid IP address, please try again.\n");
+                        Console.Write("Type custom IP address here: ");
+                    }
+                    Console.WriteLine("Server IP Address is now: " + localAddress);
+                    break;
+            }
+
+            try
 		    {
 		        var server = new TcpListener(localAddress, PORT);
 
@@ -52,11 +82,12 @@ namespace tcp
 		    catch (SocketException e)
 		    {
 		        Console.WriteLine($"Socket exception: {e}");
-// Does server.Stop() run? Or does this potentially create memory leak???
-            }
+		        Console.ReadKey();
+                // Does server.Stop() run? Or does this potentially create memory leak???
+		    }
         }
 
-		private void SendFile (string fileName, long fileSize, NetworkStream io)
+        private void SendFile (string fileName, long fileSize, NetworkStream io)
 		{
 		    var totalAmountSend = 0;
 
@@ -79,8 +110,8 @@ namespace tcp
         
 	    public static void Main ()
 		{
-			Console.WriteLine ("Server: Starts...");
+			Console.WriteLine ("Server: Starts...\n");
 			new file_server();
 		}
-	}
+    }
 }
